@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- saved from url=http://drewok.case.edu/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Home... Work... Problems</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .button-wrap {
+            width: 50vmin;
+            height: 50vmin;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+            touch-action: manipulation; /* Disable double-tap to zoom */
+        }
+        
+        #button-counter {
+            text-align:center;
+            position:fixed;
+            bottom:0px;
+            width:100%;
+        }
+		
+        #the-button {
+            transition: all 0.1s;
+            border: solid 7px white;
+            width: 100%;
+            height: 100%;
+            border-radius: 100000000px;
+            background: HSL(5.6, 82%, 51%);
+            color: white;
+            box-shadow: 0 0 0 12px HSL(5.6, 82%, 51%);
+            font-size: 5em;
+            cursor: pointer;
+            font-size: 15vmin;
+            text-align: center;
+            padding: 0;
+        }
+        
+        #the-button:hover, #the-button:active {
+            /*background: HSL(5.6, 82%, 45%);*/
+            background-image: url(favicon.png);
+            background-position: center;
+            background-size: cover;
+            box-shadow-color: HSL(5.6, 82%, 55%)
+        }
+    </style>
+</head>
+<body>
+        
+    <div class="button-wrap">
+        <button id="the-button">Chris Butler</button>
+    </div>
+    
+    <!--<div>
+        <p id="button-counter"></p>
+    </div>-->
+
+    <script>
+        var homesamples = ["home1.mp3", "home2.mp3", "home3.mp3", "home4.mp3"];
+        var worksamples = ["work1.mp3", "work2.mp3", "work3.mp3", "work4.mp3"];
+        var problemssamples = ["problems1.mp3", "problems2.mp3", "problems3.mp3", "problems4.mp3"];
+        var currsamp;
+        
+        for (var i = 0; i < samples.length; i++) {
+            homesamples[i] = new Audio("samples/home/" + homesamples[i]);
+            worksamples[i] = new Audio("samples/work/" + worksamples[i]); 
+            problemssamples[i] = new Audio("samples/problems/" + problemssamples[i]);
+
+            homesamples[i].addEventListener("canplaythrough", (function (num) {
+                console.log("Home Audio " + num + " loaded");
+            }).bind(null, i));
+            worksamples[i].addEventListener("canplaythrough", (function (num) {
+                console.log("Work Audio " + num + " loaded");
+            }).bind(null, i));
+            problemssamples[i].addEventListener("canplaythrough", (function (num) {
+                console.log("Problems Audio " + num + " loaded");
+            }).bind(null, i));
+        }
+        
+        document.getElementById("the-button").addEventListener("click", function () {
+            currsamp = homesamples[Math.floor(Math.random()*homesamples.length)];
+            currsamp.play();
+            sleep(Math.random()*2000 + 250);
+            currsamp = worksamples[Math.floor(Math.random()*worksamples.length)];
+            currsamp.play();
+            sleep(Math.random()*3500 + 250);
+            currsamp = problemssamples[Math.floor(Math.random()*problemssamples.length)];
+            currsamp.play();
+        });
+
+            function sleep(milliseconds) {
+                var start = new Date().getTime();
+                for (var i = 0; i < 1e7; i++) {
+                    if ((new Date().getTime() - start) > milliseconds){
+                        break;
+                }     
+            }
+        }
+    </script>
+
+
+</body></html>
