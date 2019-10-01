@@ -88,7 +88,7 @@
             }).bind(null, i));
         }
         
-        document.getElementById("the-button").addEventListener("click", function () {
+        document.getElementById("the-button").addEventListener("click", async function () {
             currsamp = homesamples[Math.floor(Math.random()*homesamples.length)];
             currsamp.play();
             await sleep(Math.random()*2000 + 250);
