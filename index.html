@@ -91,22 +91,18 @@
         document.getElementById("the-button").addEventListener("click", function () {
             currsamp = homesamples[Math.floor(Math.random()*homesamples.length)];
             currsamp.play();
-            sleep(Math.random()*2000 + 250);
+            await sleep(Math.random()*2000 + 250);
             currsamp = worksamples[Math.floor(Math.random()*worksamples.length)];
             currsamp.play();
-            sleep(Math.random()*3500 + 250);
+            await sleep(Math.random()*3500 + 250);
             currsamp = problemssamples[Math.floor(Math.random()*problemssamples.length)];
             currsamp.play();
         });
 
-            function sleep(milliseconds) {
-                var start = new Date().getTime();
-                for (var i = 0; i < 1e7; i++) {
-                    if ((new Date().getTime() - start) > milliseconds){
-                        break;
-                }     
-            }
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
         }
+        
     </script>
 
 
